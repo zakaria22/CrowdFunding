@@ -3,8 +3,22 @@ package com.univ.angers.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
-public class User implements Serializable{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Configurable;
+
+@Entity
+@Table(name="users")
+public class User implements Serializable{
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idUser;
 	private String userName;
 	private String password;
@@ -12,7 +26,9 @@ public class User implements Serializable{
 	private String adresse;
 	private String email;
 	private String tel;
+	@OneToMany(mappedBy="user")
 	private Collection<Projet> projets;
+	@OneToMany(mappedBy="user")
 	private Collection<Role> roles;
 	
 	public Collection<Role> getRoles() {

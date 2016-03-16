@@ -2,19 +2,45 @@ package com.univ.angers.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+
+@Entity
+@Table(name="projets")
 public class Projet implements Serializable{
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idProjet;
+	@NotEmpty
+	@Size(min=4,max=15)
 	private String designation;
+	@NotEmpty
+	@Size(min=4)
 	private String description;
 	private double budget;
 	private double needed;
 	private boolean financed;
+	@Lob
 	private byte[] photo;
 	private String nomPhoto;
+	@ManyToOne
+	@JoinColumn(name="idCategorie")
 	private Categorie categorie;
+	@ManyToOne
+	@JoinColumn(name="user")
 	private User user;
+	
+	
 	public User getUser() {
 		return user;
 	}

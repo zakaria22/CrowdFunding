@@ -3,15 +3,34 @@ package com.univ.angers.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
 public class Categorie implements Serializable{
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idCategorie;
+	@NotEmpty
+	@Size(min=4,max=8)
 	private String nomCategorie;
+	@NotEmpty
+	@Size(min=8)
 	private String description;
+	@Lob
 	private byte[] photo;
 	private String nomPhoto;
+	@OneToMany(mappedBy="categorie")
 	private Collection<Projet> projets;
+	
+	
 	public Long getId() {
 		return idCategorie;
 	}
