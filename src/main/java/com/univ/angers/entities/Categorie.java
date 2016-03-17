@@ -31,10 +31,10 @@ public class Categorie implements Serializable{
 	private Collection<Projet> projets;
 	
 	
-	public Long getId() {
+	public Long getIdCategorie() {
 		return idCategorie;
 	}
-	public void setId(Long id) {
+	public void setIdCategorie(Long id) {
 		this.idCategorie = id;
 	}
 	public String getNom() {
