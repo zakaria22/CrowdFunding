@@ -1,6 +1,7 @@
 package com.univ.angers.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -39,7 +42,8 @@ public class Projet implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="user")
 	private User user;
-	
+	@OneToMany(mappedBy="projet")
+	private Collection<Contribution> contributions;
 	
 	public User getUser() {
 		return user;

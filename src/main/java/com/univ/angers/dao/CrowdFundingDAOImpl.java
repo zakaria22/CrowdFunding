@@ -118,4 +118,10 @@ public class CrowdFundingDAOImpl implements ICrowdfundingDAO{
 		em.persist(r);
 	}
 
+	@Override
+	public void register() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
