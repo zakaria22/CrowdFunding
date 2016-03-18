@@ -37,11 +37,12 @@ public class Categorie implements Serializable{
 	public void setIdCategorie(Long id) {
 		this.idCategorie = id;
 	}
-	public String getNom() {
+	
+	public String getNomCategorie() {
 		return nomCategorie;
 	}
-	public void setNom(String nom) {
-		this.nomCategorie = nom;
+	public void setNomCategorie(String nomCategorie) {
+		this.nomCategorie = nomCategorie;
 	}
 	public String getDescription() {
 		return description;
