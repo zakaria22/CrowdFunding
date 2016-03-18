@@ -36,5 +36,24 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<context:annotation-config></context:annotation-config>
 	
+	<bean id="daoAdminSystem" class="com.univ.angers.dao.CrowdFundingDAOImpl" ></bean>
+	<bean id="adminSystemMetier" class="com.univ.angers.metier.AdminSystemMetierImpl">
+		<property name="dao" ref="daoAdminSystem"></property>
+	</bean>
+	
+	<bean id="daoAdminProjet" class="com.univ.angers.dao.CrowdFundingDAOImpl" ></bean>
+	<bean id="adminProjetMetier" class="com.univ.angers.metier.AdminProjetMetierImpl">
+		<property name="dao" ref="daoAdminProjet"></property>
+	</bean>
+	
+	<bean id="daoInternaute" class="com.univ.angers.dao.CrowdFundingDAOImpl" ></bean>
+	<bean id="InternauteMetier" class="com.univ.angers.metier.InternauteMetierImpl">
+		<property name="dao" ref="daoInternaute"></property>
+	</bean>
+	
+	<bean id="daoContrib" class="com.univ.angers.dao.CrowdFundingDAOImpl" ></bean>
+	<bean id="ContributeurMetier" class="com.univ.angers.metier.ContributeurMetierImpl">
+		<property name="dao" ref="daoContrib"></property>
+	</bean>
 	
 </beans>

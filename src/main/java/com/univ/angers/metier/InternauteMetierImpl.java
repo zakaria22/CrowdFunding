@@ -2,11 +2,14 @@ package com.univ.angers.metier;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.univ.angers.dao.ICrowdfundingDAO;
 import com.univ.angers.entities.Categorie;
 import com.univ.angers.entities.Projet;
 import com.univ.angers.entities.User;
 
+@Transactional
 public class InternauteMetierImpl implements InternauteMetier{
 
 	private ICrowdfundingDAO dao;

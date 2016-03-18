@@ -13,7 +13,7 @@ public class TestJPA {
 	}
 
 	@Test
-	public void generationDesTables() {
+	public void testJPA() {
 		try {
 			ClassPathXmlApplicationContext app= 
 					new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml"});

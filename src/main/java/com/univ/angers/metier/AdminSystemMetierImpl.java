@@ -2,6 +2,8 @@ package com.univ.angers.metier;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.univ.angers.dao.ICrowdfundingDAO;
 import com.univ.angers.entities.Categorie;
 import com.univ.angers.entities.Contribution;
@@ -9,6 +11,7 @@ import com.univ.angers.entities.Projet;
 import com.univ.angers.entities.Role;
 import com.univ.angers.entities.User;
 
+@Transactional
 public class AdminSystemMetierImpl implements IAdminSystemMetier{
 
 	private ICrowdfundingDAO dao;
