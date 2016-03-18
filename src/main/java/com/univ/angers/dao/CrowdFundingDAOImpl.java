@@ -131,12 +131,15 @@ public class CrowdFundingDAOImpl implements ICrowdfundingDAO{
 
 
 	@Override
-	public void contribuerProjet(Long idProjet, Long idUser, Contribution c) {
+	public Projet contribuerProjet(Long idProjet, Long idUser, Contribution c) {
 		Projet p = getProjet(idProjet);
 		User u = em.find(User.class, idUser);
 		c.setProjet(p);
 		c.setUser(u);
+		p.setNeeded(p.getNeeded()-c.getSommeDonnee());
+		em.merge(p);
 		em.persist(c);
+		return p;
 	}
 
 }
