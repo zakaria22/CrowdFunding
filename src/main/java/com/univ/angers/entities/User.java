@@ -38,6 +38,12 @@ public class User implements Serializable{
 	private Collection<Contribution> contributions;
 	
 	
+	public Collection<Contribution> getContributions() {
+		return contributions;
+	}
+	public void setContributions(Collection<Contribution> contributions) {
+		this.contributions = contributions;
+	}
 	public Collection<Role> getRoles() {
 		return roles;
 	}

@@ -7,13 +7,5 @@ import com.univ.angers.entities.Projet;
 
 public interface InternauteMetier {
 
-	public List<Categorie> listCategories();
-	public Categorie getCategorie(Long idCat);
-	public List<Projet> listprojets();
-	public List<Projet> projetsParMotCle(String mc);
-	public List<Projet> projetsParCategorie(Long idCat);
-	public List<Projet> projet_A_finance();
-	public List<Projet> listprojetsFinance();
-	public Projet getProjet(Long idP);
-
+	
 }

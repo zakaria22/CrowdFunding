@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.univ.angers.entities.Categorie;
+import com.univ.angers.entities.Contribution;
 import com.univ.angers.entities.Projet;
 import com.univ.angers.entities.Role;
 import com.univ.angers.entities.User;
@@ -45,15 +46,6 @@ public class CrowdFundingDAOImpl implements ICrowdfundingDAO{
 		em.merge(c);
 	}
 
-	@Override
-	public Long ajouterProjet(Projet p, Long idCat, Long idUser) {
-		Categorie c = getCategorie(idCat);
-		User u = em.find(User.class, idUser);
-		p.setCategorie(c);
-		p.setUser(u);
-		em.persist(p);
-		return p.getIdProjet();
-	}
 
 	@Override
 	public List<Projet> listprojets() {
@@ -88,6 +80,16 @@ public class CrowdFundingDAOImpl implements ICrowdfundingDAO{
 	}
 
 	@Override
+	public Long ajouterProjet(Projet p, Long idCat, Long idUser) {
+		Categorie c = getCategorie(idCat);
+		User u = em.find(User.class, idUser);
+		p.setCategorie(c);
+		p.setUser(u);
+		em.persist(p);
+		return p.getIdProjet();
+	}
+	
+	@Override
 	public Projet getProjet(Long idP) {
 		// TODO Auto-generated method stub
 		return em.find(Projet.class, idP);
@@ -107,21 +109,34 @@ public class CrowdFundingDAOImpl implements ICrowdfundingDAO{
 
 
 	@Override
-	public void ajouterUser(User u) {
-		em.persist(u);
-	}
-
-	@Override
 	public void attribuerRole(Role r, Long userID) {
 		User u = em.find(User.class, userID);
 		u.getRoles().add(r);
 		em.persist(r);
 	}
 
+	
+
 	@Override
-	public void register() {
+	public void ajouterUserAdmin(User u) {
 		// TODO Auto-generated method stub
-		
+		em.persist(u);
+	}
+
+	@Override
+	public void register(User u) {
+		// TODO Auto-generated method stub
+		em.persist(u);
+	}
+
+
+	@Override
+	public void contribuerProjet(Long idProjet, Long idUser, Contribution c) {
+		Projet p = getProjet(idProjet);
+		User u = em.find(User.class, idUser);
+		c.setProjet(p);
+		c.setUser(u);
+		em.persist(c);
 	}
 
 }

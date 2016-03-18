@@ -23,9 +23,12 @@ public interface ICrowdfundingDAO {
 	public Projet getProjet(Long idP);
 	public void supprimerProjet(Long idP);
 	public void modifierProjet(Projet p);
+	public void contribuerProjet(Long idProjet,Long idUser,Contribution c);
 	
-	public void ajouterUser(User u);
+	public void ajouterUserAdmin(User u);
 	public void attribuerRole(Role r,Long userID);
-	public void register();
+	public void register(User u);
+	
+	
 	
 }

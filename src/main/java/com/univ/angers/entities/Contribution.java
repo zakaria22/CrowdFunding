@@ -25,6 +25,38 @@ public class Contribution implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="idProjet")
 	private Projet projet;
+	public Long getIdContributeur() {
+		return idContributeur;
+	}
+	public void setIdContributeur(Long idContributeur) {
+		this.idContributeur = idContributeur;
+	}
+	public int getSommeDonnee() {
+		return sommeDonnee;
+	}
+	public void setSommeDonnee(int sommeDonnee) {
+		this.sommeDonnee = sommeDonnee;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Projet getProjet() {
+		return projet;
+	}
+	public void setProjet(Projet projet) {
+		this.projet = projet;
+	}
+	public Contribution() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Contribution(int sommeDonnee) {
+		super();
+		this.sommeDonnee = sommeDonnee;
+	}
 	
 	
 }

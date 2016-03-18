@@ -45,6 +45,12 @@ public class Projet implements Serializable{
 	@OneToMany(mappedBy="projet")
 	private Collection<Contribution> contributions;
 	
+	public Collection<Contribution> getContributions() {
+		return contributions;
+	}
+	public void setContributions(Collection<Contribution> contributions) {
+		this.contributions = contributions;
+	}
 	public User getUser() {
 		return user;
 	}
