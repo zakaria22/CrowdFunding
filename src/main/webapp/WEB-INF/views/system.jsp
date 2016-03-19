@@ -29,6 +29,9 @@
 				</div>
 				<div>
 					<f:label path="photo" >photo :</f:label>
+					<c:if test="${categorie.idCategorie!=null}">
+						<img src="photoCategorie?idCat=${categorie.idCategorie}">
+					</c:if>					
 					<input type="file" name="file" />
 				</div>
 			</div>

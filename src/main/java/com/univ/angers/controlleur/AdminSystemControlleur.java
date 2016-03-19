@@ -87,6 +87,25 @@ public class AdminSystemControlleur implements HandlerExceptionResolver{
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="/suppCat")
+	public String suppCat(Long idCat, Model model){
+		metier.supprimerCategrorie(idCat);
+		model.addAttribute("categorie", new Categorie()); //pour la saisie du categorie 
+		model.addAttribute("categories", metier.listCategories()); // pour lister les categories
+
+		return "system";
+	}
+	
+	@RequestMapping(value="/editCat")
+	public String edit(Long idCat, Model model){
+		Categorie c = metier.getCategorie(idCat);
+		model.addAttribute("editedCat",c);
+		model.addAttribute("categorie", c); //pour la saisie du categorie 
+		model.addAttribute("categories", metier.listCategories()); // pour lister les categories
+
+		return "system";
+	}
 }
 
 
