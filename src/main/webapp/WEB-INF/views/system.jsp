@@ -9,6 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div>
+		${exception}
+	</div>
+
 	<div id="ajouterCategorie">
 		<f:form modelAttribute="categorie" action="saveCategorie" 
 								method="post" enctype="multipart/form-data">
@@ -48,6 +52,8 @@
 					<td>${categ.nomCategorie}</td>
 					<td>${categ.description}</td>
 					<td><img src="photoCategorie?idCat=${categ.idCategorie}" /></td>
+					<td><a href="suppCat?idCat=${categ.idCategorie}">delete</a></td>
+					<td><a href="editCat?idCat=${categ.idCategorie}">edit</a></td>
 				</tr>
 			</c:forEach>
 		</table>

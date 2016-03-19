@@ -5,6 +5,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
@@ -16,13 +18,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.univ.angers.entities.Categorie;
 import com.univ.angers.metier.IAdminSystemMetier;
 
 @Controller
 @RequestMapping(value="/adminSystem")
-public class AdminSystemControlleur {
+public class AdminSystemControlleur implements HandlerExceptionResolver{
 	@Autowired
 	private IAdminSystemMetier metier;
 	
@@ -72,6 +76,16 @@ public class AdminSystemControlleur {
 	public byte[] photoCategorie(Long idCat) throws IOException{
 		Categorie c = metier.getCategorie(idCat);
 		return IOUtils.toByteArray(new ByteArrayInputStream(c.getPhoto()));
+	}
+
+	@Override
+	public ModelAndView resolveException(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2,
+			Exception ex) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("exception", ex.getMessage());
+		mv.setViewName("system");
+		
+		return mv;
 	}
 }
 
