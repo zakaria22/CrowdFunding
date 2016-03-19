@@ -47,6 +47,7 @@ public class CrowdFundingDAOImpl implements ICrowdfundingDAO{
 	@Override
 	public void modifierCategorie(Categorie c) {
 		em.merge(c);
+		em.flush();
 	}
 
 

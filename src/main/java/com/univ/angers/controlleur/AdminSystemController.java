@@ -26,7 +26,6 @@ import com.univ.angers.metier.IAdminSystemMetier;
 
 @Controller
 @RequestMapping(value="/adminSystem")
-@SessionAttributes("editedCat")
 public class AdminSystemController implements HandlerExceptionResolver{
 	@Autowired
 	private IAdminSystemMetier metier;
@@ -55,12 +54,11 @@ public class AdminSystemController implements HandlerExceptionResolver{
 			c.setNomPhoto(file.getOriginalFilename());
 		}
 		if(c.getIdCategorie()!=null){
-			if(model.asMap().get("editedCat")!=null){
 				if(file.isEmpty()){
-					Categorie catSession = (Categorie) model.asMap().get("editedCat");
-					c.setPhoto(catSession.getPhoto());
+					Categorie catphoto = metier.getCategorie(c.getIdCategorie());
+					c.setPhoto(catphoto.getPhoto());
 				}
-			}
+			
 			metier.modifierCategorie(c);
 		}else{
 			metier.ajouterCategorie(c);
@@ -92,7 +90,6 @@ public class AdminSystemController implements HandlerExceptionResolver{
 	public String edit(Long idCat, Model model){
 		Categorie c = metier.getCategorie(idCat);
 
-		model.addAttribute("editedCat",c);
 		model.addAttribute("categorie", c); //pour la saisie du categorie 
 		//model.addAttribute("categories", metier.listCategories()); // pour lister les categories
 
