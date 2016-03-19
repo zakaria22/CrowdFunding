@@ -25,7 +25,7 @@
 				</div>
 				<div>
 					<f:label path="photo" >photo :</f:label>
-					<input type="file" name="photo" />
+					<input type="file" name="file" />
 				</div>
 			</div>
 			<div>
