@@ -47,7 +47,7 @@
 					<td>${categ.idCategorie}</td>
 					<td>${categ.nomCategorie}</td>
 					<td>${categ.description}</td>
-					<td></td>
+					<td><img src="photoCategorie?idCat=${categ.idCategorie}" /></td>
 				</tr>
 			</c:forEach>
 		</table>
