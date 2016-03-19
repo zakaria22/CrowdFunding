@@ -6,12 +6,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.univ.angers.entities.Categorie;
 import com.univ.angers.entities.Contribution;
 import com.univ.angers.entities.Projet;
 import com.univ.angers.entities.Role;
 import com.univ.angers.entities.User;
 
+@Transactional
 public class CrowdFundingDAOImpl implements ICrowdfundingDAO{
 
 	@PersistenceContext
