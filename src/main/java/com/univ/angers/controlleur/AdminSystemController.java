@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +29,7 @@ import com.univ.angers.metier.IAdminSystemMetier;
 @RequestMapping(value="/adminSystem")
 public class AdminSystemController implements HandlerExceptionResolver{
 	@Autowired
+	@Qualifier("adminSystemMetier")
 	private IAdminSystemMetier metier;
 	
 	@RequestMapping(value="/index")
@@ -105,6 +107,8 @@ public class AdminSystemController implements HandlerExceptionResolver{
 				Exception arg3) {
 			
 			ModelAndView mv = new ModelAndView();
+			mv.addObject("categorie", new Categorie());
+			mv.addObject("categories", metier.listCategories());
 			mv.addObject("exception", arg3.getMessage());
 			mv.setViewName("adminSystem");
 			return mv;

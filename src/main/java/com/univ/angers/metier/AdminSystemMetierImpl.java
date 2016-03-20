@@ -1,5 +1,6 @@
 package com.univ.angers.metier;
 
+
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -14,82 +15,82 @@ import com.univ.angers.entities.User;
 @Transactional
 public class AdminSystemMetierImpl implements IAdminSystemMetier{
 
-	private ICrowdfundingDAO dao;
+	private ICrowdfundingDAO daoAdminSystem;
 	
 	
 	// setter
-	public void setDao(ICrowdfundingDAO dao) {
-		this.dao = dao;
+	public void setDaoAdminSystem(ICrowdfundingDAO daoAdminSystem) {
+		this.daoAdminSystem = daoAdminSystem;
 	}
 
 	@Override
 	public void supprimerProjet(Long idP) {
-		dao.supprimerProjet(idP);
+		daoAdminSystem.supprimerProjet(idP);
 	}
 
 	@Override
 	public void modifierProjet(Projet p) {
-		dao.modifierProjet(p);
+		daoAdminSystem.modifierProjet(p);
 	}
 
 	@Override
 	public Long ajouterProjet(Projet p, Long idCat, Long idUser) {
 		// TODO Auto-generated method stub
-		return dao.ajouterProjet(p, idCat, idUser);
+		return daoAdminSystem.ajouterProjet(p, idCat, idUser);
 	}
 
 	@Override
 	public Projet contribuerProjet(Long idProjet, Long idUser, Contribution c) {
 		// TODO Auto-generated method stub
-		return dao.contribuerProjet(idProjet, idUser, c);
+		return daoAdminSystem.contribuerProjet(idProjet, idUser, c);
 	}
 
 	@Override
 	public List<Projet> listprojets() {
 		// TODO Auto-generated method stub
-		return dao.listprojets();
+		return daoAdminSystem.listprojets();
 	}
 
 	@Override
 	public List<Projet> projetsParMotCle(String mc) {
 		// TODO Auto-generated method stub
-		return dao.projetsParMotCle(mc);
+		return daoAdminSystem.projetsParMotCle(mc);
 	}
 
 	@Override
 	public List<Projet> projetsParCategorie(Long idCat) {
 		// TODO Auto-generated method stub
-		return dao.projetsParCategorie(idCat);
+		return daoAdminSystem.projetsParCategorie(idCat);
 	}
 
 	@Override
 	public List<Projet> projet_A_finance() {
 		// TODO Auto-generated method stub
-		return dao.projet_A_finance();
+		return daoAdminSystem.projet_A_finance();
 	}
 
 	@Override
 	public List<Projet> listprojetsFinance() {
 		// TODO Auto-generated method stub
-		return dao.listprojetsFinance();
+		return daoAdminSystem.listprojetsFinance();
 	}
 
 	@Override
 	public Projet getProjet(Long idP) {
 		// TODO Auto-generated method stub
-		return dao.getProjet(idP);
+		return daoAdminSystem.getProjet(idP);
 	}
 
 	@Override
 	public List<Categorie> listCategories() {
 		// TODO Auto-generated method stub
-		return dao.listCategories();
+		return daoAdminSystem.listCategories();
 	}
 
 	@Override
 	public Categorie getCategorie(Long idCat) {
 		// TODO Auto-generated method stub
-		return dao.getCategorie(idCat);
+		return daoAdminSystem.getCategorie(idCat);
 	}
 
 	@Override
@@ -100,31 +101,31 @@ public class AdminSystemMetierImpl implements IAdminSystemMetier{
 	@Override
 	public Long ajouterCategorie(Categorie c) {
 		// TODO Auto-generated method stub
-		return dao.ajouterCategorie(c);
+		return daoAdminSystem.ajouterCategorie(c);
 	}
 
 	@Override
 	public void supprimerCategrorie(Long idcat) {
 		// TODO Auto-generated method stub
-		dao.supprimerCategrorie(idcat);
+		daoAdminSystem.supprimerCategrorie(idcat);
 	}
 
 	@Override
 	public void modifierCategorie(Categorie c) {
 		// TODO Auto-generated method stub
-		dao.modifierCategorie(c);
+		daoAdminSystem.modifierCategorie(c);
 	}
 
 	@Override
 	public void ajouterUserAdmin(User u) {
 		// TODO Auto-generated method stub
-		dao.ajouterUserAdmin(u);
+		daoAdminSystem.ajouterUserAdmin(u);
 	}
 
 	@Override
 	public void attribuerRole(Role r, Long userID) {
 		// TODO Auto-generated method stub
-		dao.attribuerRole(r, userID);
+		daoAdminSystem.attribuerRole(r, userID);
 	}
 
 }
