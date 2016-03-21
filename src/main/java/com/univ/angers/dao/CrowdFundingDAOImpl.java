@@ -146,4 +146,10 @@ public class CrowdFundingDAOImpl implements ICrowdfundingDAO{
 		return p;
 	}
 
+	@Override
+	public List<User> listusers() {
+		Query req=em.createQuery("select u from User u");
+		return req.getResultList();
+	}
+
 }

@@ -28,7 +28,8 @@ public interface ICrowdfundingDAO {
 	public void ajouterUserAdmin(User u);
 	public void attribuerRole(Role r,Long userID);
 	public void register(User u);
-	
+	public List<User> listusers();
+
 	
 	
 }
