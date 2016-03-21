@@ -101,8 +101,8 @@ public class CrowdFundingDAOImpl implements ICrowdfundingDAO{
 
 	@Override
 	public void supprimerProjet(Long idP) {
-		Projet p=getProjet(idP);
-		em.remove(p);
+		Projet p=em.find(Projet.class, idP);
+		 em.remove(p);
 	}
 
 	@Override
