@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.univ.angers.entities.Categorie;
+import com.univ.angers.entities.Projet;
 import com.univ.angers.entities.User;
 import com.univ.angers.metier.InternauteMetier;
 
@@ -45,8 +46,12 @@ public class HomeController {
 	@RequestMapping(value="/register")
 	public String index(Model model){
 		model.addAttribute("user",new User());
+		model.addAttribute("categories", metier.listCategories());
 		return "registration";
 	}
+	
+	
+	
 	
 	@RequestMapping(value="/save")
 	public ModelAndView save(@Valid User u, BindingResult bindingRes,
@@ -64,5 +69,8 @@ public class HomeController {
 		return new ModelAndView("redirect:" + "/");
 
 	}
+	
+	
+	
 	
 }

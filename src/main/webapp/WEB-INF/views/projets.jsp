@@ -27,6 +27,8 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
+
+	
     
     <section id="page-breadcrumb">
         <div class="vertical-center sun">
@@ -34,8 +36,7 @@
                 <div class="row">
                     <div class="action">
                         <div class="col-sm-12">
-                            <h1 class="title" align="center">Créer un compte chez nous</h1>
-                            <p align="center">C'est créer votre <h1 align="center">avenir</h1></p>
+                            <h1 class="title" align="center">Liste des projets</h1>
                         </div>
                     </div>
                 </div>
@@ -43,34 +44,37 @@
         </div>
    </section>
 
-
-
-	<div class="col-md-6 col-md-offset-3" >
-		<div class="contact-form bottom">
-			<f:form modelAttribute="user" action="save"  method="post" >
-				<div class="form-group">
-					<f:input path="userName" class="form-control" required="required" placeholder="Nom"/>
-				</div>
-				<div class="form-group">
-					<f:input path="email" class="form-control" required="required" placeholder="Email"/>
-				</div>
-				<div class="form-group">
-					<f:password path="password" class="form-control" required="required" placeholder="Mots de passe"/>
-				</div>
-				<div class="form-group">
-					<f:input path="tel" class="form-control" required="required" placeholder="Telephone"/>
-				</div>
-				<div class="form-group">
-					<f:textarea path="adresse" class="form-control" required="required" placeholder="Adresse"/>
-				</div>
-				<div class="form-group">
-					<input type="submit" name="S'enregistrer" class="btn btn-submit"
-						value="S'enregistrer">
-				</div>
-			</f:form>
-		</div>
-	</div>
-	<jsp:include page="footer.jsp"/>
+	<section id="portfolio">
+        <div class="container">
+            <div class="row">
+            	<ul class="portfolio-filter text-center"></ul>
+                <div class="portfolio-items">
+                  <c:forEach items="${projets}" var="proj">
+                  	<div class="col-sm-6 portfolio-item branded logos">
+                        <div class="portfolio-wrapper">
+                            <div class="portfolio-single">
+                                <div class="portfolio-thumb">
+                                    <img src="photoProj?idproj=${proj.idProjet}" class="img-responsive" alt="" height="42" width="42">
+                                </div>
+                                <div class="portfolio-view">
+                                    <ul class="nav nav-pills">
+                                        <li><a href="projet?idproj=${proj.idProjet}"><i class="fa fa-link"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h2 align="center">${proj.designation}</h2>
+                            </div>
+                        </div>
+                    </div>
+                  </c:forEach>    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    	<jsp:include page="footer.jsp"/>
+    
 
 </body>
 </html>

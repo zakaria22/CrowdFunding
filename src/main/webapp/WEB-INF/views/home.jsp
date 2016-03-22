@@ -25,43 +25,8 @@
     
 </head>
  <body>
-	<header id="header">
-        <nav class="navbar navbar-inverse" role="banner">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <a class="navbar-brand" href="index.html">
-                    	<h1><img src="#" alt="logo">zakaria</h1>
-                    </a>
-                    
-                </div>
-				<div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="<%=request.getContextPath() %>/">Home</a></li>
-						<li><a href="#">A propos</a></li>
-                        <li><a href="#">Projets</a></li>
-	                    <li class="dropdown"><a href="#">Catégories <i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <c:forEach items="${categories}" var="cat">
-									<li><a href="#">${cat.nomCategorie}</a></li>
-								</c:forEach>
-                            </ul>
-                        </li>                    
-						<li><a href="<%=request.getContextPath() %>/register">S'enregistrer</a></li> 
-                        <li><a href="#">Se Connecter</a></li>                        
-                    </ul>
-                </div>
-                
-            </div><!--/.container-->
-        </nav><!--/nav-->
-    </header>
-    
+	<jsp:include page="header.jsp"/>
+	
     <section id="home-slider">
         <div class="container">
             <div class="row">
@@ -161,39 +126,8 @@
     </section>
     <!--/#portfolio-->
     
-     <footer id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 text-center bottom-separator">
-                    <img src="<%=request.getContextPath() %>/resources/images/home/under.png" class="img-responsive inline" alt="">
-                </div>
-               
-                <div class="col-sm-12 text-center" align="center">
-                    <div class="contact-info bottom">
-                        <h2>Contacts</h2>
-                        <address>
-                        E-mail: <a href="mailto:lahyani.zakaria.lz@gmail.com">lahyani.zakaria.lz@gmail.com</a> <br> 
-                        Phone: 0123456789 <br> 
-                        </address>
-
-                        <h2>Address</h2>
-                        <address>
-                        Unit C2, St.Vincent's Trading Est., <br> 
-                        Feeder Road, <br> 
-                        Bristol, BS2 0UY <br> 
-                        United Kingdom <br> 
-                        </address>
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="copyright-text text-center">
-                        <p>&copy; Université d'Angers 2016. All Rights Reserved.</p>
-                        <p>Designed by <a target="_blank" href="http://www.themeum.com">Themeum</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    
+   <jsp:include page="footer.jsp"/>
     
     
     
