@@ -11,7 +11,7 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="<%=request.getContextPath() %>/">
                     	<h1><img src="#" alt="logo">zakaria</h1>
                     </a>
                     
@@ -24,7 +24,7 @@
 	                    <li class="dropdown"><a href="#">Catégories <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                                 <c:forEach items="${categories}" var="cat">
-									<li><a href="#">${cat.nomCategorie}</a></li>
+									<li><a href="<%=request.getContextPath() %>/projet/projetParCat?idCat=${cat.idCategorie}">${cat.nomCategorie}</a></li>
 								</c:forEach>
                             </ul>
                         </li>                    

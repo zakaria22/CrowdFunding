@@ -2,6 +2,7 @@ package com.univ.angers;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,19 @@ public class ProjetController {
 		return IOUtils.toByteArray(new ByteArrayInputStream(p.getPhoto()));
 	}
 	
+	@RequestMapping(value="/projetParCat")
+	public String index(Long idCat,Model model){
+		List<Projet> p = metier.projetsParCategorie(idCat);
+		if(p.size()!=0){
+			model.addAttribute("projets",metier.projetsParCategorie(idCat));
+			model.addAttribute("categories", metier.listCategories());
+			return "projectByCategories";
+		}
+		else{
+			model.addAttribute("categories", metier.listCategories());
+
+			return "404";
+		}
+	}
 
 }

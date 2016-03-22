@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="portfolio-view">
                                     <ul class="nav nav-pills">
-                                        <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                        <li><a href="projet/projetParCat?idCat=${cat.idCategorie}"><i class="fa fa-link"></i></a></li>
                                     </ul>
                                 </div>
                             </div>

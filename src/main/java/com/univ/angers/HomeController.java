@@ -50,9 +50,6 @@ public class HomeController {
 		return "registration";
 	}
 	
-	
-	
-	
 	@RequestMapping(value="/save")
 	public ModelAndView save(@Valid User u, BindingResult bindingRes,
 			Model model) throws IOException{
@@ -69,8 +66,5 @@ public class HomeController {
 		return new ModelAndView("redirect:" + "/");
 
 	}
-	
-	
-	
 	
 }
