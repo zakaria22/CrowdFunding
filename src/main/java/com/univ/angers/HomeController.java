@@ -15,12 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.univ.angers.entities.Categorie;
+import com.univ.angers.entities.Projet;
 import com.univ.angers.entities.User;
 import com.univ.angers.metier.InternauteMetier;
 
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class HomeController {
 	
@@ -51,6 +50,13 @@ public class HomeController {
 	public String allProjects(Model model){
 		model.addAttribute("projets",metier.listprojets());
 		return "allProjects";
+	}
+	
+	@RequestMapping(value="photoProj",produces=org.springframework.http.MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody //reponse envoyé directement dans le corps de la page
+	public byte[] photoProj(Long idproj) throws IOException{
+		Projet p = metier.getProjet(idproj);
+		return IOUtils.toByteArray(new ByteArrayInputStream(p.getPhoto()));
 	}
 	
 	

@@ -100,4 +100,13 @@ public class AdminProjetController {
 
 		return "adminProjet";
 	}
+	
+	@RequestMapping(value="/projet")
+	public String projet(Long idProj, Model model){
+		metier.getProjet(idProj);
+		model.addAttribute("projet", metier.getProjet(idProj));
+		//model.addAttribute("categories", metier.listCategories());
+
+		return "projet";
+	}
 }
