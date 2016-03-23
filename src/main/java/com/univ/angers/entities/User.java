@@ -3,52 +3,58 @@ package com.univ.angers.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.springframework.beans.factory.annotation.Configurable;
 
 @Entity
 @Table(name="users")
 public class User implements Serializable{
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idUser;
 	private String userName;
 	private String password;
-	private boolean actived;
 	private String adresse;
 	private String email;
 	private String tel;
+	private String role;
+	@Lob
+	private byte[] photo;
+	private String nomPhoto;
 	
+	public byte[] getPhoto() {
+		return photo;
+	}
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+	public String getNomPhoto() {
+		return nomPhoto;
+	}
+	public void setNomPhoto(String nomPhoto) {
+		this.nomPhoto = nomPhoto;
+	}
 	@OneToMany(mappedBy="user")
 	private Collection<Projet> projets;
 	
 	@OneToMany(mappedBy="user")
-	private Collection<Role> roles;
+	private Collection<Commentaire> commentaire;
 	
 	@OneToMany(mappedBy="user")
 	private Collection<Contribution> contributions;
 	
 	
-	public Collection<Contribution> getContributions() {
-		return contributions;
+	public Collection<Commentaire> getCommentaire() {
+		return commentaire;
 	}
-	public void setContributions(Collection<Contribution> contributions) {
-		this.contributions = contributions;
-	}
-	public Collection<Role> getRoles() {
-		return roles;
-	}
-	public void setRoles(Collection<Role> roles) {
-		this.roles = roles;
+	public void setCommentaire(Collection<Commentaire> commentaire) {
+		this.commentaire = commentaire;
 	}
 	public Long getIdUser() {
 		return idUser;
@@ -68,12 +74,7 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public boolean isActived() {
-		return actived;
-	}
-	public void setActived(boolean actived) {
-		this.actived = actived;
-	}
+	
 	public String getAdresse() {
 		return adresse;
 	}
@@ -86,12 +87,17 @@ public class User implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 	public String getTel() {
 		return tel;
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 	public Collection<Projet> getProjets() {
 		return projets;
@@ -99,24 +105,26 @@ public class User implements Serializable{
 	public void setProjets(Collection<Projet> projets) {
 		this.projets = projets;
 	}
+	public Collection<Contribution> getContributions() {
+		return contributions;
+	}
+	public void setContributions(Collection<Contribution> contributions) {
+		this.contributions = contributions;
+	}
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(String userName, String password, boolean actived, String adresse, String email, String tel) {
+	public User(String userName, String password, String adresse, String email, String tel,
+			String role) {
 		super();
 		this.userName = userName;
 		this.password = password;
-		this.actived = actived;
 		this.adresse = adresse;
 		this.email = email;
 		this.tel = tel;
+		this.role = role;
 	}
-	public User(String userName, String password, boolean actived) {
-		super();
-		this.userName = userName;
-		this.password = password;
-		this.actived = actived;
-	}
+	
 	
 }

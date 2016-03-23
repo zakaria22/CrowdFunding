@@ -2,12 +2,13 @@ package com.univ.angers.dao;
 
 import java.util.List;
 
-import com.univ.angers.entities.*;
+import com.univ.angers.entities.Categorie;
+import com.univ.angers.entities.Commentaire;
+import com.univ.angers.entities.Contribution;
+import com.univ.angers.entities.Projet;
+import com.univ.angers.entities.User;
 
-
-
-public interface ICrowdfundingDAO {
-
+public interface ICrowdFundingDAO {
 	public Long ajouterCategorie(Categorie c);
 	public List<Categorie> listCategories();
 	public Categorie getCategorie(Long idCat);
@@ -25,11 +26,13 @@ public interface ICrowdfundingDAO {
 	public void modifierProjet(Projet p);
 	public Projet contribuerProjet(Long idProjet,Long idUser,Contribution c);
 	
-	public void ajouterUserAdmin(User u);
-	public void attribuerRole(Role r,Long userID);
-	public void register(User u);
-	public List<User> listusers();
+	public Long ajouterCommentaire(Commentaire c, Long idP, Long idUser);
+	public List<Commentaire> listcommentaires();
 
 	
+	//public void ajouterUserAdmin(User u);
+	public void register(User u);
+	public List<User> listusers();
+	public User getUser(Long idUSer);
 	
 }

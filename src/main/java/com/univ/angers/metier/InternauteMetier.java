@@ -3,6 +3,7 @@ package com.univ.angers.metier;
 import java.util.List;
 
 import com.univ.angers.entities.Categorie;
+import com.univ.angers.entities.Commentaire;
 import com.univ.angers.entities.Projet;
 import com.univ.angers.entities.User;
 
@@ -17,6 +18,6 @@ public interface InternauteMetier {
 	public List<Categorie> listCategories();
 	public Categorie getCategorie(Long idCat);
 	public void register(User u);
-	
+	public List<Commentaire> listcommentaires();
 
 }

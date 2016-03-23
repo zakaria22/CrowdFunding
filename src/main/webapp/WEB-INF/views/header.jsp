@@ -19,7 +19,7 @@
 				<div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
 						<li class="active"><a href="<%=request.getContextPath() %>/">Home</a></li>
-						<li><a href="#">A propos</a></li>
+						<li><a href="<%=request.getContextPath() %>/projet/add">Créer Projet</a></li>
                         <li><a href="<%=request.getContextPath() %>/projet/liste_projets">Projets</a></li>
 	                    <li class="dropdown"><a href="#">Catégories <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">

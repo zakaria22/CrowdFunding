@@ -10,11 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Contribution implements Serializable{
+public class Commentaire implements Serializable{
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idContributeur;
-	private int sommeDonnee;
+	private Long idCommentaire;
+	private String commentaire;
 	
 	@ManyToOne
 	@JoinColumn(name="idUser")
@@ -24,17 +25,17 @@ public class Contribution implements Serializable{
 	@JoinColumn(name="idProjet")
 	private Projet projet;
 	
-	public Long getIdContributeur() {
-		return idContributeur;
+	public Long getIdCommentaire() {
+		return idCommentaire;
 	}
-	public void setIdContributeur(Long idContributeur) {
-		this.idContributeur = idContributeur;
+	public void setIdCommentaire(Long idCommentaire) {
+		this.idCommentaire = idCommentaire;
 	}
-	public int getSommeDonnee() {
-		return sommeDonnee;
+	public String getCommentaire() {
+		return commentaire;
 	}
-	public void setSommeDonnee(int sommeDonnee) {
-		this.sommeDonnee = sommeDonnee;
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
 	}
 	public User getUser() {
 		return user;
@@ -48,14 +49,12 @@ public class Contribution implements Serializable{
 	public void setProjet(Projet projet) {
 		this.projet = projet;
 	}
-	public Contribution(int sommeDonnee) {
-		super();
-		this.sommeDonnee = sommeDonnee;
-	}
-	public Contribution() {
+	public Commentaire() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+	public Commentaire(String commentaire) {
+		super();
+		this.commentaire = commentaire;
+	}
 }

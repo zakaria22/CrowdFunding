@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,6 +20,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name="projets")
 public class Projet implements Serializable{
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idProjet;
@@ -33,29 +33,31 @@ public class Projet implements Serializable{
 	private double budget;
 	private double needed;
 	private boolean financed;
+	private int likes;
 	@Lob
 	private byte[] photo;
 	private String nomPhoto;
+	
 	@ManyToOne
 	@JoinColumn(name="idCategorie")
 	private Categorie categorie;
+	
 	@ManyToOne
 	@JoinColumn(name="user")
 	private User user;
+	
 	@OneToMany(mappedBy="projet")
 	private Collection<Contribution> contributions;
 	
-	public Collection<Contribution> getContributions() {
-		return contributions;
+	@OneToMany(mappedBy="projet")
+	private Collection<Commentaire> commentaire;
+	
+	
+	public Collection<Commentaire> getCommentaire() {
+		return commentaire;
 	}
-	public void setContributions(Collection<Contribution> contributions) {
-		this.contributions = contributions;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setCommentaire(Collection<Commentaire> commentaire) {
+		this.commentaire = commentaire;
 	}
 	public Long getIdProjet() {
 		return idProjet;
@@ -93,6 +95,12 @@ public class Projet implements Serializable{
 	public void setFinanced(boolean financed) {
 		this.financed = financed;
 	}
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
 	public byte[] getPhoto() {
 		return photo;
 	}
@@ -111,22 +119,32 @@ public class Projet implements Serializable{
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
-	public Projet() {
-		super();
-		// TODO Auto-generated constructor stub
+	public User getUser() {
+		return user;
 	}
-	public Projet(String designation, String description, double budget, double needed, boolean financed, byte[] photo,
-			String nomPhoto) {
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Collection<Contribution> getContributions() {
+		return contributions;
+	}
+	public void setContributions(Collection<Contribution> contributions) {
+		this.contributions = contributions;
+	}
+	public Projet(String designation, String description, double budget, double needed, boolean financed, int likes,
+			byte[] photo, String nomPhoto) {
 		super();
 		this.designation = designation;
 		this.description = description;
 		this.budget = budget;
 		this.needed = needed;
 		this.financed = financed;
+		this.likes = likes;
 		this.photo = photo;
 		this.nomPhoto = nomPhoto;
 	}
-	
-	
-	
+	public Projet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 }

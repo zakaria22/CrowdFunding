@@ -19,7 +19,7 @@ public class Categorie implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idCategorie;
 	@NotEmpty
-	@Size(min=4,max=8)
+	@Size(min=4,max=20)
 	private String nomCategorie;
 	@NotEmpty
 	@Size(min=8)
@@ -27,6 +27,7 @@ public class Categorie implements Serializable{
 	@Lob
 	private byte[] photo;
 	private String nomPhoto;
+	
 	@OneToMany(mappedBy="categorie")
 	private Collection<Projet> projets;
 	
@@ -34,10 +35,9 @@ public class Categorie implements Serializable{
 	public Long getIdCategorie() {
 		return idCategorie;
 	}
-	public void setIdCategorie(Long id) {
-		this.idCategorie = id;
+	public void setIdCategorie(Long idCategorie) {
+		this.idCategorie = idCategorie;
 	}
-	
 	public String getNomCategorie() {
 		return nomCategorie;
 	}
@@ -72,14 +72,11 @@ public class Categorie implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Categorie(String nom, String description, byte[] photo, String nomPhoto) {
+	public Categorie(String nomCategorie, String description, byte[] photo, String nomPhoto) {
 		super();
-		this.nomCategorie = nom;
+		this.nomCategorie = nomCategorie;
 		this.description = description;
 		this.photo = photo;
 		this.nomPhoto = nomPhoto;
 	}
-	
-	
-	
 }

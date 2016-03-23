@@ -10,10 +10,10 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.univ.angers.entities.Categorie;
+import com.univ.angers.entities.Commentaire;
 import com.univ.angers.entities.Contribution;
 import com.univ.angers.entities.Projet;
 import com.univ.angers.entities.User;
-import com.univ.angers.metier.ContributeurMetierImpl;
 import com.univ.angers.metier.IAdminProjetMetier;
 import com.univ.angers.metier.IAdminSystemMetier;
 import com.univ.angers.metier.IContributeurMetier;
@@ -27,31 +27,40 @@ public class TestMetier {
 	}
 
 	@Test
-	public void AdminSystem() {
+	public void internaute() {
 		try {
 			ClassPathXmlApplicationContext context= 
 					new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml"});
 			
-			IAdminSystemMetier adminSystem = 
-					(IAdminSystemMetier) context.getBean("adminSystemMetier");
+			InternauteMetier internaute = 
+					(InternauteMetier) context.getBean("internaute");
+			internaute.listprojets();
+			/*	
+			InternauteMetier internaute = 
+					(InternauteMetier) context.getBean("internauteMetier");
+					IContributeurMetier admin = (IContributeurMetier) context.getBean("contributeurMetier");
 			
-			//récuperer la liste des catégories
-			List<Categorie> cts1 = adminSystem.listCategories();
+		admin.ajouterCommentaire(new Commentaire("looooooool"), (long)1,(long) 1);
+			/*	
+			InternauteMetier internaute = 
+					(InternauteMetier) context.getBean("internauteMetier");
 			
-			//ajouter des categories
-			adminSystem.ajouterCategorie(new Categorie("Immobi", "blablablabla", null, "test.jpeg"));
-			adminSystem.ajouterCategorie(new Categorie("Startus", "blablablablabla bla bala", null, "test2.jpeg"));
+			
+			internaute.register(new User("user2", "passwordZdssak", "adress1 angers", "email", "0641589512", null));
 
-			//récuperer a nouveau la liste des categories
-			List<Categorie> cts2 = adminSystem.listCategories();
+			IAdminSystemMetier admin = (IAdminSystemMetier) context.getBean("adminSystemMetier");
+			admin.ajouterCategorie(new Categorie("technologie", "blablabla", null, "null.jpg"));
+			IAdminProjetMetier adminProjet = 
+					(IAdminProjetMetier) context.getBean("adminProjetMetier");
 			
-			//tester si les 2 catégories ont bien été crée
-			assertTrue(cts1.size()!=cts2.size());
+			adminProjet.ajouterProjet(new Projet("projet1", "blabla balakd é", 220000,2520 , false, 20, null, "lol.jpeg"), (long) 1,(long) 1);
+			
+			*///tester si les 2 catégories ont bien été crée "projet1", "blabla balakd é", 220000,2520 , false, null, "lol.jpeg"
+			assertTrue(true);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 			assertTrue(e.getMessage(),false);
-
 		}
 	}
 

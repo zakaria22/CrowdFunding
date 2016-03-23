@@ -1,35 +1,34 @@
 package com.univ.angers.metier;
 
-
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.univ.angers.dao.ICrowdfundingDAO;
+import com.univ.angers.dao.ICrowdFundingDAO;
 import com.univ.angers.entities.Categorie;
+import com.univ.angers.entities.Commentaire;
 import com.univ.angers.entities.Contribution;
 import com.univ.angers.entities.Projet;
-import com.univ.angers.entities.Role;
 import com.univ.angers.entities.User;
-
 @Transactional
 public class AdminSystemMetierImpl implements IAdminSystemMetier{
 
-	private ICrowdfundingDAO daoAdminSystem;
+	private ICrowdFundingDAO daoAdminSystem;
 	
 	
-	// setter
-	public void setDaoAdminSystem(ICrowdfundingDAO daoAdminSystem) {
+	public void setDaoAdminSystem(ICrowdFundingDAO daoAdminSystem) {
 		this.daoAdminSystem = daoAdminSystem;
 	}
 
 	@Override
 	public void supprimerProjet(Long idP) {
+		// TODO Auto-generated method stub
 		daoAdminSystem.supprimerProjet(idP);
 	}
 
 	@Override
 	public void modifierProjet(Projet p) {
+		// TODO Auto-generated method stub
 		daoAdminSystem.modifierProjet(p);
 	}
 
@@ -96,6 +95,13 @@ public class AdminSystemMetierImpl implements IAdminSystemMetier{
 	@Override
 	public void register(User u) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Commentaire> listcommentaires() {
+		// TODO Auto-generated method stub
+		return daoAdminSystem.listcommentaires();
 	}
 
 	@Override
@@ -110,22 +116,24 @@ public class AdminSystemMetierImpl implements IAdminSystemMetier{
 		daoAdminSystem.supprimerCategrorie(idcat);
 	}
 
+
 	@Override
 	public void modifierCategorie(Categorie c) {
 		// TODO Auto-generated method stub
 		daoAdminSystem.modifierCategorie(c);
+	
 	}
 
 	@Override
-	public void ajouterUserAdmin(User u) {
+	public Long ajouterCommentaire(Commentaire c, Long idP, Long idUser) {
 		// TODO Auto-generated method stub
-		daoAdminSystem.ajouterUserAdmin(u);
+		return daoAdminSystem.ajouterCommentaire(c, idP, idUser);
 	}
 
 	@Override
-	public void attribuerRole(Role r, Long userID) {
+	public User getUser(Long idUSer) {
 		// TODO Auto-generated method stub
-		daoAdminSystem.attribuerRole(r, userID);
+		return daoAdminSystem.getUser(idUSer);
 	}
 
 }

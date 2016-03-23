@@ -1,27 +1,27 @@
 package com.univ.angers.metier;
 
-
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.univ.angers.dao.ICrowdfundingDAO;
+import com.univ.angers.dao.ICrowdFundingDAO;
 import com.univ.angers.entities.Categorie;
+import com.univ.angers.entities.Commentaire;
 import com.univ.angers.entities.Contribution;
 import com.univ.angers.entities.Projet;
 import com.univ.angers.entities.User;
-
 @Transactional
 public class AdminProjetMetierImpl implements IAdminProjetMetier{
+
+	private ICrowdFundingDAO daoAdminProjet;
 	
-	private ICrowdfundingDAO daoAdminProjet;
 	
-	// setter
-	public void setDaoAdminProjet(ICrowdfundingDAO daoAdminProjet) {
+	public void setDaoAdminProjet(ICrowdFundingDAO daoAdminProjet) {
 		this.daoAdminProjet = daoAdminProjet;
 	}
 	
 	
+
 	@Override
 	public Long ajouterProjet(Projet p, Long idCat, Long idUser) {
 		// TODO Auto-generated method stub
@@ -89,6 +89,12 @@ public class AdminProjetMetierImpl implements IAdminProjetMetier{
 	}
 
 	@Override
+	public List<Commentaire> listcommentaires() {
+		// TODO Auto-generated method stub
+		return daoAdminProjet.listcommentaires();
+	}
+
+	@Override
 	public void supprimerProjet(Long idP) {
 		// TODO Auto-generated method stub
 		daoAdminProjet.supprimerProjet(idP);
@@ -98,6 +104,21 @@ public class AdminProjetMetierImpl implements IAdminProjetMetier{
 	public void modifierProjet(Projet p) {
 		// TODO Auto-generated method stub
 		daoAdminProjet.modifierProjet(p);
+	}
+
+
+	@Override
+	public Long ajouterCommentaire(Commentaire c, Long idP, Long idUser) {
+		// TODO Auto-generated method stub
+		return daoAdminProjet.ajouterCommentaire(c, idP, idUser);
+	}
+
+
+
+	@Override
+	public User getUser(Long idUSer) {
+		// TODO Auto-generated method stub
+		return daoAdminProjet.getUser(idUSer);
 	}
 
 }

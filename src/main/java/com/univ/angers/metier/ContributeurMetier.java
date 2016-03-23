@@ -7,78 +7,100 @@ import org.springframework.transaction.annotation.Transactional;
 import com.univ.angers.dao.ICrowdFundingDAO;
 import com.univ.angers.entities.Categorie;
 import com.univ.angers.entities.Commentaire;
+import com.univ.angers.entities.Contribution;
 import com.univ.angers.entities.Projet;
 import com.univ.angers.entities.User;
-
-
 @Transactional
-public class InternauteMetierImpl implements InternauteMetier{
+public class ContributeurMetier implements IContributeurMetier{
 
-	private ICrowdFundingDAO daoInternaute;
-
-	public void setDaoInternaute(ICrowdFundingDAO daoInternaute) {
-		this.daoInternaute = daoInternaute;
+	private ICrowdFundingDAO dao;
+	
+	public void setDao(ICrowdFundingDAO dao) {
+		this.dao = dao;
 	}
 
 	@Override
 	public List<Projet> listprojets() {
 		// TODO Auto-generated method stub
-		return daoInternaute.listprojets();
+		return dao.listprojets();
 	}
 
 	@Override
 	public List<Projet> projetsParMotCle(String mc) {
 		// TODO Auto-generated method stub
-		return daoInternaute.projetsParMotCle(mc);
+		return dao.projetsParMotCle(mc);
 	}
 
 	@Override
 	public List<Projet> projetsParCategorie(Long idCat) {
 		// TODO Auto-generated method stub
-		return daoInternaute.projetsParCategorie(idCat);
+		return dao.projetsParCategorie(idCat);
 	}
 
 	@Override
 	public List<Projet> projet_A_finance() {
 		// TODO Auto-generated method stub
-		return daoInternaute.projet_A_finance();
+		return dao.projet_A_finance();
 	}
 
 	@Override
 	public List<Projet> listprojetsFinance() {
 		// TODO Auto-generated method stub
-		return daoInternaute.listprojetsFinance();
+		return dao.listprojetsFinance();
 	}
 
 	@Override
 	public Projet getProjet(Long idP) {
 		// TODO Auto-generated method stub
-		return daoInternaute.getProjet(idP);
+		return dao.getProjet(idP);
 	}
 
 	@Override
 	public List<Categorie> listCategories() {
 		// TODO Auto-generated method stub
-		return daoInternaute.listCategories();
+		return dao.listCategories();
 	}
 
 	@Override
 	public Categorie getCategorie(Long idCat) {
 		// TODO Auto-generated method stub
-		return daoInternaute.getCategorie(idCat);
+		return dao.getCategorie(idCat);
 	}
 
 	@Override
 	public void register(User u) {
 		// TODO Auto-generated method stub
-		daoInternaute.register(u);
+		
 	}
 
 	@Override
 	public List<Commentaire> listcommentaires() {
 		// TODO Auto-generated method stub
-		return daoInternaute.listcommentaires();
+		return dao.listcommentaires();
 	}
-	
-	
+
+	@Override
+	public Long ajouterProjet(Projet p, Long idCat, Long idUser) {
+		// TODO Auto-generated method stub
+		return dao.ajouterProjet(p, idCat, idUser);
+	}
+
+	@Override
+	public Projet contribuerProjet(Long idProjet, Long idUser, Contribution c) {
+		// TODO Auto-generated method stub
+		return dao.contribuerProjet(idProjet, idUser, c);
+	}
+
+	@Override
+	public Long ajouterCommentaire(Commentaire c, Long idP, Long idUser) {
+		// TODO Auto-generated method stub
+		return dao.ajouterCommentaire(c, idP, idUser);
+	}
+
+	@Override
+	public User getUser(Long idUSer) {
+		// TODO Auto-generated method stub
+		return dao.getUser(idUSer);
+	}
+
 }

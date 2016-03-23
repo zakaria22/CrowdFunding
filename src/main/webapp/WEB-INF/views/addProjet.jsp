@@ -34,8 +34,7 @@
                 <div class="row">
                     <div class="action">
                         <div class="col-sm-12">
-                            <h1 class="title" align="center">Créer un compte chez nous</h1>
-                            <p align="center">C'est créer votre <h1 align="center">avenir</h1></p>
+                            <h1 class="title" align="center">Créer un Nouveau Projet</h1>
                         </div>
                     </div>
                 </div>
@@ -47,28 +46,31 @@
 
 	<div class="col-md-6 col-md-offset-3" >
 		<div class="contact-form bottom">
-			<f:form modelAttribute="user" action="save"  method="post" enctype="multipart/form-data">
+			<f:form modelAttribute="addProjet" action="saveNewProjet"  method="post" enctype="multipart/form-data">
 				<div class="form-group">
-					<f:input path="userName" class="form-control" required="required" placeholder="Nom"/>
+					<f:input path="designation" class="form-control" required="required" placeholder="designation"/>
 				</div>
 				<div class="form-group">
-					<f:input path="email" class="form-control" required="required" placeholder="Email"/>
+					<f:textarea path="description" class="form-control" required="required" placeholder="description"/>
 				</div>
 				<div class="form-group">
-					<f:password path="password" class="form-control" required="required" placeholder="Mots de passe"/>
+					<f:select path="categorie.idCategorie" class="form-control" required="required" items="${categories}" itemValue="idCategorie" itemLabel="nomCategorie"/>
 				</div>
 				<div class="form-group">
-					<f:input path="tel" class="form-control" required="required" placeholder="Telephone"/>
+					<f:input path="budget" class="form-control" required="required" placeholder="budget"/>
 				</div>
 				<div class="form-group">
-					<f:textarea path="adresse" class="form-control" required="required" placeholder="Adresse"/>
+					<f:input path="needed" class="form-control" required="required" placeholder="needed"/>
 				</div>
 				<div class="form-group">
+					<c:if test="${projet.idProjet!=null}">
+						<img src="photoProj?idP=${projet.idProjet}" class="img-responsive" alt="">
+					</c:if>
 					<input type="file" name="file"/>
 				</div>
 				<div class="form-group">
 					<input type="submit" name="S'enregistrer" class="btn btn-submit"
-						value="S'enregistrer">
+						value="Faire Une demande">
 				</div>
 			</f:form>
 		</div>
