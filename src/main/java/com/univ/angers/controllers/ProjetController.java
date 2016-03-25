@@ -3,6 +3,7 @@ package com.univ.angers.controllers;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -13,6 +14,8 @@ import javax.validation.Valid;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -86,7 +89,7 @@ public class ProjetController {
 	}
 	
 	@RequestMapping(value="/projet")
-	public String projet(Long idproj, Model model){
+	public String projet(Long idproj, Model model, Principal principal){
 		model.addAttribute("contribution", new Contribution());
 		model.addAttribute("projet", metier.getProjet(idproj));
 		model.addAttribute("categories", metier.listCategories());
@@ -186,7 +189,6 @@ public class ProjetController {
 		metier.contribuerProjet(c.getProjet().getIdProjet(), c.getUser().getIdUser(), c);
 		return new ModelAndView("redirect:" + "/projet/projet?idproj="+c.getProjet().getIdProjet());	
 	}
-	
 	
 	
 	

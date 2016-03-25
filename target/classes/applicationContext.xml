@@ -33,7 +33,9 @@
 	<security:http auto-config="true" use-expressions="true" >
 		<security:intercept-url pattern="/projet/edit" access="hasRole('ADMIN_PROJET')"/>
 		<security:intercept-url pattern="/projet/supp" access="hasRole('ADMIN_PROJET')"/>
+		
 		<security:intercept-url pattern="/projet/saveCont" access="hasRole('CLIENT')"/>	
+		<security:intercept-url pattern="/projet/add" access="hasRole('CLIENT')"/>	
 		
 		<security:intercept-url pattern="/adminSystem/" access="hasRole('ADMIN_SYSTEM')"/>
 		

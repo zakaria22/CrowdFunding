@@ -1,5 +1,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +29,13 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
+	<sec:authentication var="user" property="principal" />
 
-	
-    
+<c:set var="userAuth">
+	<sec:authentication property="principal.username" /> 
+</c:set>
+
+
     <section id="page-breadcrumb">
         <div class="vertical-center sun">
              <div class="container">
@@ -44,16 +50,27 @@
         </div>
    </section>
 
+
+
 	<section id="portfolio-information" class="padding-top">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
                     <img src="photoProj?idproj=${projet.idProjet}" class="img-responsive" alt="">
                     <div class="row">
-					  <div class="col-md-4 live-preview" >
-					  <a href="edit?idP=${projet.idProjet}" class="btn btn-lg btn-default">modifier</a>
-					  <a href="#" class="btn btn-common uppercase ">supprimer</a></div>
-					</div>
+                    
+                    
+                    	<sec:authorize access="isAuthenticated()">
+	                    	<c:if test="${projet.user.userName}==${userAuth}">
+	                    		<div class="col-md-4 live-preview" >
+								 	<a href="edit?idP=${projet.idProjet}" class="btn btn-lg btn-default">modifier</a>
+								  	<a href="#" class="btn btn-common uppercase ">supprimer</a>
+							  	</div>
+	                    	</c:if> 
+					    </sec:authorize>
+					    
+					    
+					  </div>  
                 </div>
                 <div class="col-sm-6">
                     <div class="project-name overflow">
