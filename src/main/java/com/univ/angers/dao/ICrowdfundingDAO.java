@@ -33,6 +33,8 @@ public interface ICrowdFundingDAO {
 	//public void ajouterUserAdmin(User u);
 	public void register(User u);
 	public List<User> listusers();
+	public List<Projet> listUserProjets( Long idUSer);
+	public List<Contribution> listUserContribution( Long idUSer);
 	public User getUser(Long idUSer);
 	
 }

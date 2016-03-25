@@ -77,7 +77,7 @@
                     <div class="client overflow">
                         <h3>Admin:</h3>
                         <ul class="nav navbar-nav navbar-default">
-                            <li><a href="#"><i class="fa fa-bolt"></i>${projet.user.userName}</a></li>
+                            <li><a href="<%=request.getContextPath() %>/profile/?idUSer=${projet.user.idUser}"><i class="fa fa-bolt"></i>${projet.user.userName}</a></li>
                         </ul>
                     </div>
                     
@@ -99,24 +99,40 @@
 			                        </div>                        
 			                    </div>
 			                </div>
+			                
+							<f:form modelAttribute="contribution" action="saveCont"  method="post" id="myForm">
+								<div class="form-group">
+									<f:input path="sommeDonnee" class="form-control" required="required" placeholder="somme"/>
+								</div>
+								<div class="form-group">
+										<f:select path="user.idUser" class="form-control" required="required" items="${users}" itemValue="idUser" itemLabel="userName"/>
+								</div>
+								<div class="form-group" style="display: none;">
+									<f:input path="projet.idProjet" value="${projet.idProjet}"/>
+								</div>
+							</f:form>
 			                <div class="col-md-6 col-md-offset-3">
 			                    <div class="single-price price-three">
-			                        <a href="<%=request.getContextPath() %>/projet/contribute?idProj=${projet.idProjet}" class="btn btn-buynow">Contribuer</a>
-			                    </div>
+									<a href="javascript: myFunction()" onclick="" class="btn btn-buynow">Contribuer</a>
+								</div>
 			                </div>                       
 			              </div>
 			          </div>
-			          
 			       </div>
                 </div>
             </div>
-    </section>
+   
+</section>
     
     
     <jsp:include page="commentaire.jsp"/>
     	<jsp:include page="footer.jsp"/>
     
-
+<script>
+	function myFunction() {
+	    document.getElementById("myForm").submit();
+	}
+</script> 
 </body>
 </html>
  

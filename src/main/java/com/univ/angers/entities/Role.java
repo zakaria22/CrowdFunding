@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Role implements Serializable{
@@ -13,7 +15,22 @@ public class Role implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idRole;
 	private String roleName;
+	
+	@ManyToOne
+	@JoinColumn(name="idUser")
 	private User user;
+	
+
+	@ManyToOne
+	@JoinColumn(name="idProjet")
+	private Projet projet;
+	
+	public Projet getProjet() {
+		return projet;
+	}
+	public void setProjet(Projet projet) {
+		this.projet = projet;
+	}
 	
 	public User getUser() {
 		return user;

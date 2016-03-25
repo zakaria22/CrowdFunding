@@ -22,7 +22,7 @@
 										</div>
 									
 										<div class="form-group">
-											<input type="submit" >
+											<input type="submit" class="btn btn-info">
 										</div>
 										
 									</f:form>
@@ -30,11 +30,11 @@
 							          <li class="media">
 							            <c:forEach items="${commentaires}" var="com">
 								             <div class="post-comment">
-								               <a class="pull-left" href="#">
-								                  <img class="media-object"  src="photoUser?idUsr=${com.user.idUser}">
+								               <a class="pull-left" href="<%=request.getContextPath() %>/profile/?idUSer=${com.user.idUser}">
+								                  <img class="media-object"  src="photoUser?idUsr=${com.user.idUser}" width="100" height="100">
 								               </a>
 								               <div class="media-body">
-									               <span><i class="fa fa-user"></i>Posted by <a href="#">${com.user.userName}</a></span>
+									               <span><i class="fa fa-user"></i>Posted by <a href="<%=request.getContextPath() %>/profile/?idUSer=${com.user.idUser}">${com.user.userName}</a></span>
 									               <p>${com.commentaire}</p>
 									               <ul class="nav navbar-nav post-nav">
 									                 

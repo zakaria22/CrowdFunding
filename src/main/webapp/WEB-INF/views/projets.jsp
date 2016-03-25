@@ -47,23 +47,23 @@
 	<section id="portfolio">
         <div class="container">
             <div class="row">
-            	<ul class="portfolio-filter text-center">
-                    <li><a class="btn btn-default active" href="#" data-filter="*">Tous</a></li>
-                    <li><a class="btn btn-default" href="#" >Par Categorie</a></li>
-                    <li><a class="btn btn-default" href="#" >Financé</a></li>
-                    <li><a class="btn btn-default" href="#" >Non Financé</a></li>
-                    <li><a class="btn btn-default" href="#" >Par Mot-clé</a></li>
-                    <li><input id="key" type="text" class="search-form" autocomplete="off" placeholder="Search"> </li>
-                   <li><button type="button" onclick=""><i class="fa fa-search"></i></button> </li>
+            
+            	<ul class="portfolio-filter text-center collapse navbar-collapse">
+            	
+                    <li><a class="btn btn-default active" href="<%=request.getContextPath() %>/projet/liste_projets" data-filter="*">Tous</a></li>
+                    <li><a class="btn btn-default" href="<%=request.getContextPath() %>/projet/financed" >Financé</a></li>
+                    <li><a class="btn btn-default" href="<%=request.getContextPath() %>/projet/nonfinanced" >Non Financé</a></li>
+                    <li><a class="btn btn-default" href="" >Par Mot-clé :</a></li>
+                    <li ><input id="key" type="text" class="search-form" autocomplete="off" placeholder="Search"> </li>
+                   <li ><button type="button" onclick="javascript:openPage()" ><i class="fa fa-search"></i></button> </li>
                  </ul>
-                
-                <div class="portfolio-items">
+      <div class="portfolio-items">
                   <c:forEach items="${projets}" var="proj">
                   	<div class="col-sm-6 portfolio-item branded logos">
                         <div class="portfolio-wrapper">
                             <div class="portfolio-single">
                                 <div class="portfolio-thumb">
-                                    <img src="photoProj?idproj=${proj.idProjet}" class="img-responsive" alt="" height="42" width="42">
+                                    <img src="photoProj?idproj=${proj.idProjet}" class="img-responsive" alt="" width="100" height="100">
                                 </div>
                                 <div class="portfolio-view">
                                     <ul class="nav nav-pills">
@@ -84,6 +84,14 @@
     
     	<jsp:include page="footer.jsp"/>
     
+<script  type="text/javascript">
+	var v="<%=request.getContextPath() %>/projet/key?mc=";
+	openPage = function() {
+	var v2= document.getElementById('key').value; 
+	location.href = v+v2;
+	}
+</script>
+          
 
 </body>
 </html>

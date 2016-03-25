@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="users")
@@ -23,7 +24,6 @@ public class User implements Serializable{
 	private String adresse;
 	private String email;
 	private String tel;
-	private String role;
 	@Lob
 	private byte[] photo;
 	private String nomPhoto;
@@ -40,6 +40,7 @@ public class User implements Serializable{
 	public void setNomPhoto(String nomPhoto) {
 		this.nomPhoto = nomPhoto;
 	}
+	@NotNull
 	@OneToMany(mappedBy="user")
 	private Collection<Projet> projets;
 	
@@ -47,9 +48,26 @@ public class User implements Serializable{
 	private Collection<Commentaire> commentaire;
 	
 	@OneToMany(mappedBy="user")
+	private Collection<Role> roles;
+	
+	
+	@NotNull
+	@OneToMany(mappedBy="user")
 	private Collection<Contribution> contributions;
 	
 	
+	public Collection<Role> getRole() {
+		return roles;
+	}
+	public void setRole(Collection<Role> roles) {
+		this.roles = roles;
+	}
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
 	public Collection<Commentaire> getCommentaire() {
 		return commentaire;
 	}
@@ -93,12 +111,7 @@ public class User implements Serializable{
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
 	public Collection<Projet> getProjets() {
 		return projets;
 	}
@@ -115,15 +128,13 @@ public class User implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(String userName, String password, String adresse, String email, String tel,
-			String role) {
+	public User(String userName, String password, String adresse, String email, String tel) {
 		super();
 		this.userName = userName;
 		this.password = password;
 		this.adresse = adresse;
 		this.email = email;
 		this.tel = tel;
-		this.role = role;
 	}
 	
 	

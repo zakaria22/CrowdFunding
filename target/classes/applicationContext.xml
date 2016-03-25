@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
@@ -25,6 +27,25 @@
 			</list>
 		</property>
 	</bean>
+	
+	
+	<!-- security -->
+	<security:http auto-config="true" use-expressions="true" >
+		<security:intercept-url pattern="/projet/edit" access="hasRole('ADMIN_PROJET')"/>
+		<security:intercept-url pattern="/adminSystem/" access="hasRole('ADMIN_SYSTEM')"/>
+		<security:form-login login-page="/login" default-target-url="/" authentication-failure-url="/login"/>
+		<security:logout logout-url="/logout"/>
+	</security:http>
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="datasource" 
+				users-by-username-query="select userName, password, true from users where userName=?"
+				authorities-by-username-query="select u.userName,r.roleName from users u, role r where u.idUser = r.idUser and u.userName=?"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+	
+	
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitManager" ref="persistenceUnitManager"></property>
@@ -36,23 +57,24 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<context:annotation-config></context:annotation-config>
 	
-	<bean id="daoAdminSystem" class="com.univ.angers.dao.CrowdFundingImpl" ></bean>
-	<bean id="adminSystemMetier" class="com.univ.angers.metier.AdminSystemMetierImpl">
+	
+	<bean id="daoAdminSystem" class="com.univ.angers.dao.impl.CrowdFundingImpl" ></bean>
+	<bean id="adminSystemMetier" class="com.univ.angers.metier.impl.AdminSystemMetierImpl">
 		<property name="daoAdminSystem" ref="daoAdminSystem"></property>
 	</bean>
 	
-	<bean id="daoAdminProjet" class="com.univ.angers.dao.CrowdFundingImpl" ></bean>
-	<bean id="adminProjetMetier" class="com.univ.angers.metier.AdminProjetMetierImpl">
+	<bean id="daoAdminProjet" class="com.univ.angers.dao.impl.CrowdFundingImpl" ></bean>
+	<bean id="adminProjetMetier" class="com.univ.angers.metier.impl.AdminProjetMetierImpl">
 		<property name="daoAdminProjet" ref="daoAdminProjet"></property>
 	</bean>
 	
-	<bean id="daoInternaute" class="com.univ.angers.dao.CrowdFundingImpl" ></bean>
-	<bean id="internaute" class="com.univ.angers.metier.InternauteMetierImpl">
+	<bean id="daoInternaute" class="com.univ.angers.dao.impl.CrowdFundingImpl" ></bean>
+	<bean id="internaute" class="com.univ.angers.metier.impl.InternauteMetierImpl">
 		<property name="daoInternaute" ref="daoInternaute"></property>
 	</bean>
 	
-	<bean id="daoContrib" class="com.univ.angers.dao.CrowdFundingImpl" ></bean>
-	<bean id="contributeurMetier" class="com.univ.angers.metier.ContributeurMetier">
+	<bean id="daoContrib" class="com.univ.angers.dao.impl.CrowdFundingImpl" ></bean>
+	<bean id="contributeurMetier" class="com.univ.angers.metier.impl.ContributeurMetierImpl">
 		<property name="dao" ref="daoContrib"></property>
 	</bean>
 </beans>
