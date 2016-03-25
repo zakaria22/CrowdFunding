@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
+import org.omg.IOP.ExceptionDetailMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ import com.univ.angers.metier.IAdminSystemMetier;
 
 @Controller
 @RequestMapping(value="/adminSystem")
-public class AdminSystemController implements HandlerExceptionResolver{
+public class AdminSystemController {
 	@Autowired
 	@Qualifier("adminSystemMetier")
 	private IAdminSystemMetier metier;
@@ -97,20 +98,7 @@ public class AdminSystemController implements HandlerExceptionResolver{
 
 		return "adminSystem";
 	}
+
+
 	
-	
-	
-	//pour gerer les exception
-		//dans la page jsp associé il faut faire des modifications 
-		@Override
-		public ModelAndView resolveException(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2,
-				Exception arg3) {
-			
-			ModelAndView mv = new ModelAndView();
-			mv.addObject("categorie", new Categorie());
-			mv.addObject("categories", metier.listCategories());
-			mv.addObject("exception", arg3.getMessage());
-			mv.setViewName("adminSystem");
-			return mv;
-		}
 }

@@ -21,4 +21,6 @@ public class UserController {
 		model.addAttribute("user", metier.getUser(idUSer));
 		return "profile";
 	}
+	
+	
 }

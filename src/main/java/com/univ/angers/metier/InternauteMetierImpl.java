@@ -75,9 +75,9 @@ public class InternauteMetierImpl implements InternauteMetier{
 	}
 
 	@Override
-	public List<Commentaire> listcommentaires() {
+	public List<Commentaire> listcommentaires(Long idP) {
 		// TODO Auto-generated method stub
-		return daoInternaute.listcommentaires();
+		return daoInternaute.listcommentaires( idP);
 	}
 	
 	

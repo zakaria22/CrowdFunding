@@ -18,6 +18,6 @@ public interface InternauteMetier {
 	public List<Categorie> listCategories();
 	public Categorie getCategorie(Long idCat);
 	public void register(User u);
-	public List<Commentaire> listcommentaires();
+	public List<Commentaire> listcommentaires(Long idP);
 
 }

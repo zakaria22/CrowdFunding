@@ -74,9 +74,9 @@ public class ContributeurMetier implements IContributeurMetier{
 	}
 
 	@Override
-	public List<Commentaire> listcommentaires() {
+	public List<Commentaire> listcommentaires(Long idP) {
 		// TODO Auto-generated method stub
-		return dao.listcommentaires();
+		return dao.listcommentaires(idP);
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class ContributeurMetier implements IContributeurMetier{
 	}
 
 	@Override
-	public Projet contribuerProjet(Long idProjet, Long idUser, Contribution c) {
+	public Contribution contribuerProjet(Long idProjet, Long idUser, Contribution c) {
 		// TODO Auto-generated method stub
 		return dao.contribuerProjet(idProjet, idUser, c);
 	}
@@ -101,6 +101,12 @@ public class ContributeurMetier implements IContributeurMetier{
 	public User getUser(Long idUSer) {
 		// TODO Auto-generated method stub
 		return dao.getUser(idUSer);
+	}
+
+	@Override
+	public List<User> listusers() {
+		// TODO Auto-generated method stub
+		return dao.listusers();
 	}
 
 }

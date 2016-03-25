@@ -43,11 +43,20 @@
             </div>
         </div>
    </section>
-
+	
 	<section id="portfolio">
         <div class="container">
             <div class="row">
-            	<ul class="portfolio-filter text-center"></ul>
+            	<ul class="portfolio-filter text-center">
+                    <li><a class="btn btn-default active" href="#" data-filter="*">Tous</a></li>
+                    <li><a class="btn btn-default" href="#" >Par Categorie</a></li>
+                    <li><a class="btn btn-default" href="#" >Financé</a></li>
+                    <li><a class="btn btn-default" href="#" >Non Financé</a></li>
+                    <li><a class="btn btn-default" href="#" >Par Mot-clé</a></li>
+                    <li><input id="key" type="text" class="search-form" autocomplete="off" placeholder="Search"> </li>
+                   <li><button type="button" onclick=""><i class="fa fa-search"></i></button> </li>
+                 </ul>
+                
                 <div class="portfolio-items">
                   <c:forEach items="${projets}" var="proj">
                   	<div class="col-sm-6 portfolio-item branded logos">

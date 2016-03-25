@@ -56,6 +56,10 @@ public class Contribution implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	public Contribution(Projet projet) {
+		super();
+		this.projet = projet;
+	}
 	
 }

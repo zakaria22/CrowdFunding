@@ -39,7 +39,7 @@ public class AdminSystemMetierImpl implements IAdminSystemMetier{
 	}
 
 	@Override
-	public Projet contribuerProjet(Long idProjet, Long idUser, Contribution c) {
+	public Contribution contribuerProjet(Long idProjet, Long idUser, Contribution c) {
 		// TODO Auto-generated method stub
 		return daoAdminSystem.contribuerProjet(idProjet, idUser, c);
 	}
@@ -99,9 +99,9 @@ public class AdminSystemMetierImpl implements IAdminSystemMetier{
 	}
 
 	@Override
-	public List<Commentaire> listcommentaires() {
+	public List<Commentaire> listcommentaires(Long idP) {
 		// TODO Auto-generated method stub
-		return daoAdminSystem.listcommentaires();
+		return daoAdminSystem.listcommentaires( idP);
 	}
 
 	@Override
@@ -134,6 +134,12 @@ public class AdminSystemMetierImpl implements IAdminSystemMetier{
 	public User getUser(Long idUSer) {
 		// TODO Auto-generated method stub
 		return daoAdminSystem.getUser(idUSer);
+	}
+
+	@Override
+	public List<User> listusers() {
+		// TODO Auto-generated method stub
+		return daoAdminSystem.listusers();
 	}
 
 }

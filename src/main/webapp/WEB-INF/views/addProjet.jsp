@@ -57,6 +57,9 @@
 					<f:select path="categorie.idCategorie" class="form-control" required="required" items="${categories}" itemValue="idCategorie" itemLabel="nomCategorie"/>
 				</div>
 				<div class="form-group">
+					<f:select path="user.idUser" class="form-control" required="required" items="${users}" itemValue="idUser" itemLabel="userName"/>
+				</div>
+				<div class="form-group">
 					<f:input path="budget" class="form-control" required="required" placeholder="budget"/>
 				</div>
 				<div class="form-group">

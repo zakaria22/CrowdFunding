@@ -103,22 +103,24 @@ public class CrowdFundingImpl implements ICrowdFundingDAO{
 	}
 
 	@Override
-	public Projet contribuerProjet(Long idProjet, Long idUser, Contribution c) {
+	public Contribution contribuerProjet(Long idProjet, Long idUser, Contribution c) {
 		Projet p = getProjet(idProjet);
 		User u = em.find(User.class, idUser);
 		c.setProjet(p);
 		c.setUser(u);
 		p.setNeeded(p.getNeeded()-c.getSommeDonnee());
+		if(p.getNeeded()==0){
+			p.setFinanced(true);
+		}
 		em.merge(p);
 		em.persist(c);
-		return p;
+		return c;
 	}
 
 
 	@Override
 	public void register(User u) {
 		em.persist(u);
-		
 	}
 
 	@Override
@@ -151,8 +153,10 @@ public class CrowdFundingImpl implements ICrowdFundingDAO{
 	}
 
 	@Override
-	public List<Commentaire> listcommentaires() {
-		Query req=em.createQuery("select c from Commentaire c");
+	public List<Commentaire> listcommentaires(Long idP) {
+		Query req=em.createQuery("select c from Commentaire c where c.projet.idProjet=:x");
+		req.setParameter("x", idP);
+
 		return req.getResultList();
 	}
 

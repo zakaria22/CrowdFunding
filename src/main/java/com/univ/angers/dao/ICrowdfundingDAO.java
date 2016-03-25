@@ -24,10 +24,10 @@ public interface ICrowdFundingDAO {
 	public Projet getProjet(Long idP);
 	public void supprimerProjet(Long idP);
 	public void modifierProjet(Projet p);
-	public Projet contribuerProjet(Long idProjet,Long idUser,Contribution c);
+	public Contribution contribuerProjet(Long idProjet,Long idUser,Contribution c);
 	
 	public Long ajouterCommentaire(Commentaire c, Long idP, Long idUser);
-	public List<Commentaire> listcommentaires();
+	public List<Commentaire> listcommentaires(Long idP);
 
 	
 	//public void ajouterUserAdmin(User u);

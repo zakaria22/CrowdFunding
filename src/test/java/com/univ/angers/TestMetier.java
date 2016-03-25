@@ -25,44 +25,64 @@ public class TestMetier {
 	@Before
 	public void setUp() throws Exception {
 	}
-
 	@Test
-	public void internaute() {
+	public void TestContribution() {
 		try {
 			ClassPathXmlApplicationContext context= 
 					new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml"});
 			
-			InternauteMetier internaute = 
-					(InternauteMetier) context.getBean("internaute");
-			internaute.listprojets();
-			/*	
-			InternauteMetier internaute = 
-					(InternauteMetier) context.getBean("internauteMetier");
-					IContributeurMetier admin = (IContributeurMetier) context.getBean("contributeurMetier");
-			
-		admin.ajouterCommentaire(new Commentaire("looooooool"), (long)1,(long) 1);
-			/*	
-			InternauteMetier internaute = 
-					(InternauteMetier) context.getBean("internauteMetier");
+			IContributeurMetier contribProjet = 
+					(IContributeurMetier) context.getBean("contributeurMetier");
 			
 			
-			internaute.register(new User("user2", "passwordZdssak", "adress1 angers", "email", "0641589512", null));
-
-			IAdminSystemMetier admin = (IAdminSystemMetier) context.getBean("adminSystemMetier");
-			admin.ajouterCategorie(new Categorie("technologie", "blablabla", null, "null.jpg"));
-			IAdminProjetMetier adminProjet = 
-					(IAdminProjetMetier) context.getBean("adminProjetMetier");
+			contribProjet.contribuerProjet((long) 1, (long) 2, new Contribution(265));
 			
-			adminProjet.ajouterProjet(new Projet("projet1", "blabla balakd é", 220000,2520 , false, 20, null, "lol.jpeg"), (long) 1,(long) 1);
-			
-			*///tester si les 2 catégories ont bien été crée "projet1", "blabla balakd é", 220000,2520 , false, null, "lol.jpeg"
 			assertTrue(true);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 			assertTrue(e.getMessage(),false);
+
 		}
 	}
+	
+//	@Test
+//	public void internaute() {
+//		try {
+//			ClassPathXmlApplicationContext context= 
+//					new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml"});
+//			
+//			InternauteMetier internaute = 
+//					(InternauteMetier) context.getBean("internaute");
+//			internaute.listprojets();
+//			/*	
+//			InternauteMetier internaute = 
+//					(InternauteMetier) context.getBean("internauteMetier");
+//					IContributeurMetier admin = (IContributeurMetier) context.getBean("contributeurMetier");
+//			
+//		admin.ajouterCommentaire(new Commentaire("looooooool"), (long)1,(long) 1);
+//			/*	
+//			InternauteMetier internaute = 
+//					(InternauteMetier) context.getBean("internauteMetier");
+//			
+//			
+//			internaute.register(new User("user2", "passwordZdssak", "adress1 angers", "email", "0641589512", null));
+//
+//			IAdminSystemMetier admin = (IAdminSystemMetier) context.getBean("adminSystemMetier");
+//			admin.ajouterCategorie(new Categorie("technologie", "blablabla", null, "null.jpg"));
+//			IAdminProjetMetier adminProjet = 
+//					(IAdminProjetMetier) context.getBean("adminProjetMetier");
+//			
+//			adminProjet.ajouterProjet(new Projet("projet1", "blabla balakd é", 220000,2520 , false, 20, null, "lol.jpeg"), (long) 1,(long) 1);
+//			
+//			*///tester si les 2 catégories ont bien été crée "projet1", "blabla balakd é", 220000,2520 , false, null, "lol.jpeg"
+//			assertTrue(true);
+//			
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			assertTrue(e.getMessage(),false);
+//		}
+//	}
 
 	/*
 

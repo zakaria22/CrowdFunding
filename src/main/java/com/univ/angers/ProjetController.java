@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
@@ -17,9 +19,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.univ.angers.entities.Categorie;
+import com.univ.angers.entities.Commentaire;
+import com.univ.angers.entities.Contribution;
 import com.univ.angers.entities.Projet;
 import com.univ.angers.entities.User;
 import com.univ.angers.metier.IAdminProjetMetier;
@@ -43,11 +48,19 @@ public class ProjetController {
 		metier.getProjet(idproj);
 		model.addAttribute("projet", metier.getProjet(idproj));
 		model.addAttribute("categories", metier.listCategories());
-		model.addAttribute("commentaires", metier.listcommentaires());
-
+		model.addAttribute("users", metier.listusers());
+		model.addAttribute("comm", new Commentaire());		
+		model.addAttribute("commentaires", metier.listcommentaires(idproj));
+		
 		return "projet";
 	}
 	
+	@RequestMapping(value="/saveCommentaire")
+	public ModelAndView saveCommentaire(@Valid Commentaire c,BindingResult bindingResult,
+			Model  model) throws IOException{
+		metier.ajouterCommentaire(c,c.getProjet().getIdProjet() , c.getUser().getIdUser());
+		return new ModelAndView("redirect:" + "/projet/projet?idproj="+c.getProjet().getIdProjet());	
+	}
 	
 	
 	@RequestMapping(value="photoUser",produces=org.springframework.http.MediaType.IMAGE_JPEG_VALUE)
@@ -56,6 +69,9 @@ public class ProjetController {
 		User u = metier.getUser(idUsr);
 		return IOUtils.toByteArray(new ByteArrayInputStream(u.getPhoto()));
 	}
+	
+	
+	
 	
 	
 	@RequestMapping(value="/projetParCat")
@@ -83,6 +99,7 @@ public class ProjetController {
 	@RequestMapping(value="/add")
 	public String add(Model model){
 		model.addAttribute("addProjet",new Projet());
+		model.addAttribute("users", metier.listusers());
 		model.addAttribute("categories", metier.listCategories());
 		return "addProjet";
 	}
@@ -102,10 +119,10 @@ public class ProjetController {
 			p.setNomPhoto(file.getOriginalFilename());
 		}
 		
-		metier.ajouterProjet(p, p.getCategorie().getIdCategorie(), (long) 2);
+		metier.ajouterProjet(p, p.getCategorie().getIdCategorie(), p.getUser().getIdUser());
 		
 		model.addAttribute("categories", metier.listCategories());
-		return new ModelAndView("redirect:" + "/projet/projet");
+		return new ModelAndView("redirect:" + "/projet/liste_projets");
 
 	}
 
@@ -123,4 +140,27 @@ public class ProjetController {
 		metier.supprimerProjet(idP);
 		return new ModelAndView("redirect:" + "/");
 	}
+	
+	@RequestMapping(value="/contribute")
+	public String contribute(long idProj,Model model){
+		Projet p = metier.getProjet(idProj);
+		model.addAttribute("contribution", new Contribution());
+		model.addAttribute("projet",p);
+		model.addAttribute("users", metier.listusers());
+		model.addAttribute("categorie", metier.getProjet(idProj).getCategorie());
+		return "contribution";
+	}
+	
+	
+	@RequestMapping(value="/saveCont")
+	public ModelAndView saveCont(@Valid Contribution c,BindingResult bindingResult,
+			Model  model) throws IOException{
+		metier.contribuerProjet(c.getProjet().getIdProjet(), c.getUser().getIdUser(), c);
+		return new ModelAndView("redirect:" + "/projet/projet?idproj="+c.getProjet().getIdProjet());	
+	}
+	
+	
+	
+	
+
 }
