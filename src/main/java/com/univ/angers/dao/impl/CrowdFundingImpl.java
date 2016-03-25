@@ -123,6 +123,9 @@ public class CrowdFundingImpl implements ICrowdFundingDAO{
 
 	@Override
 	public void register(User u) {
+		Role r = new Role("CLIENT");
+		r.setUser(u);
+		em.persist(r);
 		em.persist(u);
 	}
 

@@ -179,16 +179,6 @@ public class ProjetController {
 		return new ModelAndView("redirect:" + "/");
 	}
 	
-	@RequestMapping(value="/contribute")
-	public String contribute(long idProj,Model model){
-		Projet p = metier.getProjet(idProj);
-		model.addAttribute("contribution", new Contribution());
-		model.addAttribute("projet",p);
-		model.addAttribute("users", metier.listusers());
-		model.addAttribute("categorie", metier.getProjet(idProj).getCategorie());
-		return "contribution";
-	}
-	
 	
 	@RequestMapping(value="/saveCont")
 	public ModelAndView saveCont(@Valid Contribution c,BindingResult bindingResult,

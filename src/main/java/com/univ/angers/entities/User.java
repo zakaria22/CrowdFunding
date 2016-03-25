@@ -40,7 +40,6 @@ public class User implements Serializable{
 	public void setNomPhoto(String nomPhoto) {
 		this.nomPhoto = nomPhoto;
 	}
-	@NotNull
 	@OneToMany(mappedBy="user")
 	private Collection<Projet> projets;
 	
@@ -51,7 +50,6 @@ public class User implements Serializable{
 	private Collection<Role> roles;
 	
 	
-	@NotNull
 	@OneToMany(mappedBy="user")
 	private Collection<Contribution> contributions;
 	

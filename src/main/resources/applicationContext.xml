@@ -32,7 +32,11 @@
 	<!-- security -->
 	<security:http auto-config="true" use-expressions="true" >
 		<security:intercept-url pattern="/projet/edit" access="hasRole('ADMIN_PROJET')"/>
+		<security:intercept-url pattern="/projet/supp" access="hasRole('ADMIN_PROJET')"/>
+		<security:intercept-url pattern="/projet/saveCont" access="hasRole('CLIENT')"/>	
+		
 		<security:intercept-url pattern="/adminSystem/" access="hasRole('ADMIN_SYSTEM')"/>
+		
 		<security:form-login login-page="/login" default-target-url="/" authentication-failure-url="/login"/>
 		<security:logout logout-url="/logout"/>
 	</security:http>
@@ -41,6 +45,13 @@
 			<security:jdbc-user-service data-source-ref="datasource" 
 				users-by-username-query="select userName, password, true from users where userName=?"
 				authorities-by-username-query="select u.userName,r.roleName from users u, role r where u.idUser = r.idUser and u.userName=?"/>
+			
+			<security:jdbc-user-service data-source-ref="datasource" 
+				users-by-username-query="select userName, password, true from users where userName=?"
+				authorities-by-username-query="select u.userName,p.designation,r.roleName from users u,projets p, role r where u.idUser = r.idUser 
+					p.idProjet = r.idProjet and u.userName=? and p.designation=?"/>
+			
+			<security:jdbc-user-service data-source-ref=""/>
 		</security:authentication-provider>
 	</security:authentication-manager>
 	
